@@ -1,0 +1,144 @@
+body{
+	background-color: #DEDEDE;
+	font-family: Arial;
+}
+
+
+
+h2{
+	text-align: center;
+	margin-bottom: 10px;
+	color: rgba(0,0,0,1);
+}
+
+.contenedor{
+	margin-left: 0px;
+	margin-top: 0px;
+	width: 20%;
+	max-width: 1000px;
+	background: #F3F3F3;
+	padding: 15px;
+	border: 1px solid rgba(0,0,0,0.5);
+
+}
+
+.contenedor_input{
+	/*display: block;*/
+	padding: 2px;
+	width: 100%;
+	margin: 8px 0px;
+	font-size: 20px; 
+}
+
+.boton{
+	background: linear-gradient(#BF9E3E, #FFB940);
+
+	border: 0;
+	color: black;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-bottom: 0;
+	padding: 10px;
+	width: 100%;
+}
+
+
+
+
+
+
+/* Inicio de Todo dentro de la tabla donde aparecen los datos*/
+#main-container{
+	margin: 20px auto;
+	width: Arial;
+	margin-left:0px;
+
+}
+
+.tabla{
+	background-color: white;
+	width: 40%;
+	text-align: center;
+	border-collapse: collapse;
+	border: 1px solid rgba(0,0,0,0.8);
+}
+
+.table_th{
+	padding: 8px;
+}
+
+.table_td{
+	padding: 2px;
+}
+
+thead{
+	background-color: #246355;
+	color: white;
+	border-bottom:  solid 5px #0F362D;
+}
+
+.table_tr:nth-child(even){
+	background-color:#ddd;
+}
+
+.table_tr:hover{
+	background-color: 827D70;
+	color: white;
+}
+
+.eliminar{
+	background: linear-gradient(#BF9E3E, #FFB940);
+
+	border: 0;
+	color: black;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-bottom: 0;
+	padding: 5px;
+
+}
+.editar{
+	background: linear-gradient(#BF9E3E, #FFB940);
+
+	border: 0;
+	color: black;
+	cursor: pointer;
+	border-radius: 5px;
+	margin-bottom: 0;
+	padding: 5px;
+
+}
+
+/* Fin de Todo dentro de la tabla donde aparecen los datos*/
+
+/*-------------------------------Estilos para la vista panel.html--------------------------------------------------*/
+
+.barra_arriba{
+	background: red;
+	/*padding-bottom: 10px;*/
+	padding-top: 0px;
+	padding: auto;
+}
+
+.Cerrar_Seccion{
+	margin-left: 1200px;
+	margin-bottom: 20px;
+}
+
+.barra_lateral{
+	width: 120px;
+	height: 435px;
+	background: #F3F3F3;
+	
+}
+
+
+.link{
+	margin: 10px;
+	text-decoration: none;
+	border-radius: 5px;
+	cursor: pointer;
+	background: linear-gradient(#BF9E3E, #FFB940);
+	padding-right: 40px;
+}
+
