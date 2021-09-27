@@ -25,9 +25,11 @@ private $pdo;
     			$Cliente = New Cliente(); // se crea una isntancia de Cargo 
 
     			$Cliente->set_Nombre($r->Nombre);
-    			$Cliente->set_Apellido($r->Apellido);
-    			$Cliente->set_Usuario($r->Cliente);
-    			$Cliente->set_Clave($r->Clave);
+    			$Cliente->set_Dni($r->Dni);
+    			$Cliente->set_Telefono($r->Telefono);
+				$Cliente->set_Direccion($r->Direccion);
+				$Cliente->set_Correo($r->Contraseña);
+    			$Cliente->set_Contraseña($r->Contraseña);
     			$Cliente->set_Id_Usuario($r->Id_Cliente);
 
     			$result[] = $Cliente; //guarda cada instancia de cargo en el arreglo result
@@ -44,7 +46,7 @@ private $pdo;
    {
         try
         {
-            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE Cliente=? and Clave=?"); //prepara la consulta 
+            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE Cliente=? and Contraseña=?"); //prepara la consulta 
             $stm->execute(array($data->get_Cliente(),$data->get_Cliente())); //ejecuta la consulta y pasa por parametro el Id
             if($stm->rowCount()>0){
                 $r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el objeto de l
@@ -52,7 +54,7 @@ private $pdo;
                 session_start();
                 $_SESSION['Id_Cliente']=$r->Id_Cliente;
                 $_SESSION['Cliente']=$r->Cliente;
-                $_SESSION['Clave']=$r->Clave;
+                $_SESSION['Contraseña']=$r->Clave;
                 return true;
             } else{
                 return false;
@@ -74,7 +76,15 @@ private $pdo;
     		$r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el resultado de la consulta guardado en $stm
 
     		$Cliente = new Cliente (); //	Crea un objeto alm, una instancia de la calse Cargo
-
+			
+			$Cliente->set_Nombre($r->Nombre);
+    			$Cliente->set_Dni($r->Dni);
+    			$Cliente->set_Telefono($r->Telefono);
+				$Cliente->set_Direccion($r->Direccion);
+				$Cliente->set_Correo($r->Contraseña);
+    			$Cliente->set_Contraseña($r->Contraseña);
+    			$Cliente->set_Id_Usuario($r->Id_Cliente);
+			
     		$Cliente->set_Nombre($r->Nombre); //guarda en la instancia Cargo, el id del objeto de la clase Cargo
     		$Cliente->set_Apellido($r->Apellido); //lo mismo para el resto de los datos
     		$Cliente->set_Cliente($r->Cliente);
