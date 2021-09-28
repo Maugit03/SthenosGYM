@@ -20,7 +20,7 @@ private $pdo;
     	{
     		$result = array();
 
-    		$stm = $this->pdo->prepare("SELECT * FROM usuarios"); //directiva de traer toda la tabla cargo
+    		$stm = $this->pdo->prepare("SELECT * FROM usuario"); //directiva de traer toda la tabla cargo
     		$stm->execute(); //ejecuta la consulta
     		    		foreach($stm->fetchAll (PDO::FETCH_OBJ) as $r) //recorre una lista de objetos cargo que lo guarda
     		{
@@ -50,7 +50,7 @@ public function ListarxCargo($idcargo)
         {
             $result = array();
 
-            $stm = $this->pdo->prepare("SELECT * FROM usuarios where Id_Cargo=?"); //directiva de traer toda la tabla cargo
+            $stm = $this->pdo->prepare("SELECT * FROM usuario where Id_Cargo=?"); //directiva de traer toda la tabla cargo
             $stm->execute(array($idcargo)); //ejecuta la consulta
                         foreach($stm->fetchAll (PDO::FETCH_OBJ) as $r) //recorre una lista de objetos cargo que lo guarda
             {
@@ -80,7 +80,7 @@ public function ListarxCargo($idcargo)
    {
         try
         {
-            $stm = $this->pdo->prepare("SELECT * FROM usuarios WHERE Usuario=? and Clave=?"); //prepara la consulta 
+            $stm = $this->pdo->prepare("SELECT * FROM usuario WHERE Usuario=? and Clave=?"); //prepara la consulta 
             $stm->execute(array($data->get_Usuario(),$data->get_Clave())); //ejecuta la consulta y pasa por parametro el Id
             if($stm->rowCount()>0){
                 $r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el objeto de l
@@ -104,7 +104,7 @@ public function ListarxCargo($idcargo)
     {
     	try
     	{
-    		$stm = $this->pdo->prepare("SELECT * FROM usuarios WHERE Id_Usuario = ?"); //prepara la consulta 
+    		$stm = $this->pdo->prepare("SELECT * FROM usuario WHERE Id_Usuario = ?"); //prepara la consulta 
     		$stm->execute(array ($Id_Usuario)); //ejecuta la consulta y pasa por parametro el Id
 
     		$r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el resultado de la consulta guardado en $stm
@@ -128,7 +128,7 @@ public function ListarxCargo($idcargo)
     {
     	try
     	{
-    		$stm = $this->pdo->prepare("DELETE FROM usuarios Where Id_Usuario= ?") ; //crea la consulta 
+    		$stm = $this->pdo->prepare("DELETE FROM usuario Where Id_Usuario= ?") ; //crea la consulta 
     		$stm->execute(array($Id_Usuario)); //ejecuta la consulta 
     	}catch (Exception $e)
     	{
@@ -142,7 +142,7 @@ public function ListarxCargo($idcargo)
     	try
     	{
    
-    		$sql = "UPDATE usuarios SET
+    		$sql = "UPDATE usuario SET
     				Nombre     		 = ?,
     				Apellido 		 = ?,
     				Usuario 		 = ?,
@@ -170,7 +170,7 @@ public function Registrar (Usuario $data)
     {
     	try
     	{
-    		$sql = "INSERT INTO usuarios (Id_Cargo, Nombre, Apellido, Usuario, Clave) VALUES (?, ?, ?, ?, ?)"; 
+    		$sql = "INSERT INTO usuario (Id_Cargo, Nombre, Apellido, Usuario, Clave) VALUES (?, ?, ?, ?, ?)"; 
 
     		$this->pdo->prepare($sql)
     			->execute(

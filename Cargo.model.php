@@ -20,7 +20,7 @@ private $pdo;
     	{
     		$result = array();
 
-    		$stm = $this->pdo->prepare("SELECT c1.Id_Cargo, c1.Cargo, c2.Cargo AS Superior FROM cargos AS c1 LEFT JOIN (SELECT * FROM cargos) AS c2 ON c2.Id_Cargo=c1.Id_Superior"); //directiva de traer toda la tabla cargo
+    		$stm = $this->pdo->prepare("SELECT c1.Id_Cargo, c1.Cargo, c2.Cargo AS Superior FROM cargos AS c1 LEFT JOIN (SELECT * FROM cargo) AS c2 ON c2.Id_Cargo=c1.Id_Superior"); //directiva de traer toda la tabla cargo
 			
     		$stm->execute(); //ejecuta la consulta 
 
@@ -52,7 +52,7 @@ private $pdo;
     {
     	try
     	{
-    		$stm = $this->pdo->prepare("DELETE FROM cargos Where Id_Cargo = ?") ; //crea la consulta 
+    		$stm = $this->pdo->prepare("DELETE FROM cargo Where Id_Cargo = ?") ; //crea la consulta 
     		$stm->execute(array($Id_Cargo)); //ejecuta la consulta 
     	}catch (Exception $e)
     	{

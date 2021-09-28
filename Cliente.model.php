@@ -28,9 +28,9 @@ private $pdo;
     			$Cliente->set_Dni($r->Dni);
     			$Cliente->set_Telefono($r->Telefono);
 				$Cliente->set_Direccion($r->Direccion);
-				$Cliente->set_Correo($r->Contraseña);
+				$Cliente->set_Correo($r->Correo);
     			$Cliente->set_Contraseña($r->Contraseña);
-    			$Cliente->set_Id_Usuario($r->Id_Cliente);
+    			$Cliente->set_Id_Cliente($r->Id_Cliente);
 
     			$result[] = $Cliente; //guarda cada instancia de cargo en el arreglo result
     		}  
@@ -54,7 +54,7 @@ private $pdo;
                 session_start();
                 $_SESSION['Id_Cliente']=$r->Id_Cliente;
                 $_SESSION['Cliente']=$r->Cliente;
-                $_SESSION['Contraseña']=$r->Clave;
+                $_SESSION['Contraseña']=$r->Contraseña;
                 return true;
             } else{
                 return false;
@@ -81,14 +81,16 @@ private $pdo;
     			$Cliente->set_Dni($r->Dni);
     			$Cliente->set_Telefono($r->Telefono);
 				$Cliente->set_Direccion($r->Direccion);
-				$Cliente->set_Correo($r->Contraseña);
+				$Cliente->set_Correo($r->Correo);
     			$Cliente->set_Contraseña($r->Contraseña);
-    			$Cliente->set_Id_Usuario($r->Id_Cliente);
+    			$Cliente->set_Id_Cliente($r->Id_Cliente);
 			
     		$Cliente->set_Nombre($r->Nombre); //guarda en la instancia Cargo, el id del objeto de la clase Cargo
-    		$Cliente->set_Apellido($r->Apellido); //lo mismo para el resto de los datos
-    		$Cliente->set_Cliente($r->Cliente);
-    		$Cliente->set_Clave($r->Clave);
+			$Cliente->set_Dni($r->Dni);
+			$Cliente->set_Telefono($r->Telefono);
+			$Cliente->set_Direccion($r->Direccion);
+    		$Cliente->set_Correo($r->Correo); //lo mismo para el resto de los datos
+    		$Cliente->set_Contraseña($r->Contraseña);
     		$Cliente->set_Id_Cliente($r->Id_Cliente);//reguntar si va
 
     		return $Cliente; //segun el Id_Cargo especificado, devulve un objeto de la clase Cargos 
@@ -106,18 +108,22 @@ private $pdo;
    
     		$sql = "UPDATE cliente SET
     				Nombre     		 = ?,
-    				Apellido 		 = ?,
-    				Usuario 		 = ?,
-    				Clave            = ?
-    				Where Id_Usuario= ?";//Crea la consulta
+    				Dni      		 = ?,
+    				Telefono 		 = ?,
+					Direccion        = ?,
+					Correo           = ?,
+    				Contraseña            = ?
+    				Where Id_Cliente= ?";//Crea la consulta
 
     		$this->pdo->prepare($sql)
     			->execute(
     			array(
     				$data->get_Nombre(),
-    				$data->get_Apellido(),
-    				$data->get_Cliente(),
-    				$data->get_Clave(),
+    				$data->get_Dni(),
+    				$data->get_Telefono(),
+					$data->get_Direccion(),
+					$data->get_Correo(),
+    				$data->get_Contraseña(),
     				$data->get_Id_Cliente()
     			)
 
@@ -132,16 +138,18 @@ public function Registrar (Cliente $data)
     {
     	try
     	{
-    		$sql = "INSERT INTO Cliente (Nombre, Apellido, Cliente, Clave) VALUES (?, ?, ?, ?, ?)"; 
+    		$sql = "INSERT INTO Cliente (Nombre, Dni, Telefono, Direccion, Correo, Contraseña) VALUES (?, ?, ?, ?, ?, ?)"; 
 
     		$this->pdo->prepare($sql)
     			->execute(
     				array(
                         //$data->get_Id_Cliente(),
                         $data->get_Nombre(),
-    					$data->get_Apellido(),
-                        $data->get_Cliente(),
-    					$data->get_Clave()
+    					$data->get_Dni(),
+                        $data->get_Telefono(),
+    					$data->get_Direccion(),
+						$data->get_Correo(),
+						$data->get_Contraseña(),
     				)
     			); 
     	}catch (Exception $e)
