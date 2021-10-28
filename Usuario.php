@@ -152,7 +152,7 @@ class="pure-form pure-form-stacked">
 					<?php 
 						if(isset($_POST['Id_Cargo']))
 							{ ?>
-					<?php foreach($modelusuario->ListarxCargo($idcargo) as $r): ?>
+					<?php foreach($modelusuario->ListarxCargo($id_cargo) as $r): ?>
 						<tr class="table_tr">
 								<td class="table_td"><?php echo $r->get_Nombre();?></td>
 								<td class="table_td"><?php echo $r->get_Apellido(); ?></td>
@@ -165,7 +165,7 @@ class="pure-form pure-form-stacked">
 						<form action="Usuario.php" method="post">
 							<input type="hidden" name="operacion" value="Editar"/>
 							<input type="hidden" name="Id_Usuario" value="<?php echo $r->get_Id_Usuario();?>"/>
-							<input type="hidden" name="Id_Cargo" value="<?php echo $idcargo ?>"/>
+							<input type="hidden" name="Id_Cargo" value="<?php echo $id_cargo ?>"/>
 							<input class="editar" type="submit" value="Editar"/>
 						</form>		
 							</td>
@@ -174,7 +174,7 @@ class="pure-form pure-form-stacked">
 						<form action="Usuario.php" method="post" onsubmit="return confirm ('Esta seguro?');">
 							<input type="hidden" name="operacion" value="Eliminar"/>
 							<input type="hidden" name="Id_Usuario" value="<?php echo $r->get_Id_Usuario();?>"/>
-							<input type="hidden" name="Id_Cargo" value="<?php echo $idcargo ?>"/>
+							<input type="hidden" name="Id_Cargo" value="<?php echo $id_cargo ?>"/>
 							<input class="eliminar" type="submit" value="Eliminar"/>
 						</form>		
 						</td>

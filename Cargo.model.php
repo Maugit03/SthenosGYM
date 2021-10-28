@@ -20,7 +20,7 @@ private $pdo;
     	{
     		$result = array();
 
-    		$stm = $this->pdo->prepare("SELECT c1.Id_Cargo, c1.Cargo, c2.Cargo AS Superior FROM cargos AS c1 LEFT JOIN (SELECT * FROM cargo) AS c2 ON c2.Id_Cargo=c1.Id_Superior"); //directiva de traer toda la tabla cargo
+    		$stm = $this->pdo->prepare("SELECT c1.Id_Cargo, c1.Cargo, c2.Cargo AS Superior FROM cargo AS c1 LEFT JOIN (SELECT * FROM cargo) AS c2 ON c2.Id_Cargo=c1.Id_Superior"); //directiva de traer toda la tabla cargo
 			
     		$stm->execute(); //ejecuta la consulta 
 
@@ -63,7 +63,7 @@ private $pdo;
     {
     	try
     	{
-    		$sql = "INSERT INTO cargos (Cargo, Id_Superior) VALUES (?, ?)"; 
+    		$sql = "INSERT INTO cargo (Cargo, Id_Superior) VALUES (?, ?)"; 
       
     		$this->pdo->prepare($sql)
     			->execute(

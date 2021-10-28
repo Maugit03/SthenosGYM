@@ -29,7 +29,7 @@ private $pdo;
     			$Cliente->set_Telefono($r->Telefono);
 				$Cliente->set_Direccion($r->Direccion);
 				$Cliente->set_Correo($r->Correo);
-    			$Cliente->set_Contraseña($r->Contraseña);
+    			$Cliente->set_Clave($r->Clave);
     			$Cliente->set_Id_Cliente($r->Id_Cliente);
 
     			$result[] = $Cliente; //guarda cada instancia de cargo en el arreglo result
@@ -46,7 +46,7 @@ private $pdo;
    {
         try
         {
-            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE Cliente=? and Contraseña=?"); //prepara la consulta 
+            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE Cliente=? and Clave=?"); //prepara la consulta 
             $stm->execute(array($data->get_Cliente(),$data->get_Cliente())); //ejecuta la consulta y pasa por parametro el Id
             if($stm->rowCount()>0){
                 $r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el objeto de l
@@ -54,7 +54,7 @@ private $pdo;
                 session_start();
                 $_SESSION['Id_Cliente']=$r->Id_Cliente;
                 $_SESSION['Cliente']=$r->Cliente;
-                $_SESSION['Contraseña']=$r->Contraseña;
+                $_SESSION['Clave']=$r->Clave;
                 return true;
             } else{
                 return false;
@@ -82,7 +82,7 @@ private $pdo;
     			$Cliente->set_Telefono($r->Telefono);
 				$Cliente->set_Direccion($r->Direccion);
 				$Cliente->set_Correo($r->Correo);
-    			$Cliente->set_Contraseña($r->Contraseña);
+    			$Cliente->set_Clave($r->Clave);
     			$Cliente->set_Id_Cliente($r->Id_Cliente);
 			
     		$Cliente->set_Nombre($r->Nombre); //guarda en la instancia Cargo, el id del objeto de la clase Cargo
@@ -90,7 +90,7 @@ private $pdo;
 			$Cliente->set_Telefono($r->Telefono);
 			$Cliente->set_Direccion($r->Direccion);
     		$Cliente->set_Correo($r->Correo); //lo mismo para el resto de los datos
-    		$Cliente->set_Contraseña($r->Contraseña);
+    		$Cliente->set_Clave($r->Clave);
     		$Cliente->set_Id_Cliente($r->Id_Cliente);//reguntar si va
 
     		return $Cliente; //segun el Id_Cargo especificado, devulve un objeto de la clase Cargos 
@@ -112,7 +112,7 @@ private $pdo;
     				Telefono 		 = ?,
 					Direccion        = ?,
 					Correo           = ?,
-    				Contraseña            = ?
+    				Clave            = ?
     				Where Id_Cliente= ?";//Crea la consulta
 
     		$this->pdo->prepare($sql)
@@ -123,7 +123,7 @@ private $pdo;
     				$data->get_Telefono(),
 					$data->get_Direccion(),
 					$data->get_Correo(),
-    				$data->get_Contraseña(),
+    				$data->get_Clave(),
     				$data->get_Id_Cliente()
     			)
 
@@ -138,7 +138,7 @@ public function Registrar (Cliente $data)
     {
     	try
     	{
-    		$sql = "INSERT INTO Cliente (Nombre, Dni, Telefono, Direccion, Correo, Contraseña) VALUES (?, ?, ?, ?, ?, ?)"; 
+    		$sql = "INSERT INTO cliente (Nombre, Dni, Telefono, Direccion, Correo, Clave) VALUES (?, ?, ?, ?, ?, ?)"; 
 
     		$this->pdo->prepare($sql)
     			->execute(
@@ -149,7 +149,7 @@ public function Registrar (Cliente $data)
                         $data->get_Telefono(),
     					$data->get_Direccion(),
 						$data->get_Correo(),
-						$data->get_Contraseña(),
+						$data->get_Clave(),
     				)
     			); 
     	}catch (Exception $e)
