@@ -44,14 +44,14 @@ private $pdo;
 
 
 //---------------------------------------------------Listar por Cargo-----------------------------------------
-public function ListarxCargo($id_cargo)
+public function ListarxCargo($Id_Cargo)
     {
         try 
         {
             $result = array();
 
             $stm = $this->pdo->prepare("SELECT * FROM usuario where Id_Cargo=?"); //directiva de traer toda la tabla cargo
-            $stm->execute(array($id_cargo)); //ejecuta la consulta
+            $stm->execute(array($Id_Cargo)); //ejecuta la consulta
                         foreach($stm->fetchAll (PDO::FETCH_OBJ) as $r) //recorre una lista de objetos cargo que lo guarda
             {
                 $Usuario = New Usuario(); // se crea una isntancia de Cargo 

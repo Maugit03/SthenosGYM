@@ -18,7 +18,7 @@ private $pdo;
         {
             $result = array();
 
-            $stm = $this->pdo->prepare("SELECT c1.Id_tiporutina, c1.Tiporutina FROM tiporutinas AS c1 LEFT JOIN (SELECT * FROM tiporutinas)");
+            $stm = $this->pdo->prepare("SELECT c1.Id_Tiporutina, c1.Tiporutina, c2.Tiporutina FROM tiporutinas AS c1 LEFT JOIN (SELECT * FROM tiporutinas) AS c2 ON c2.Id_Tiporutina");
 
             $stm->execute();
 
@@ -38,7 +38,7 @@ private $pdo;
     		die($e->getMessage());
     	}
     }
-    public function Eliminar($Tiporutina)
+    public function Eliminar($Id_Tiporutina)
     {
     	try
     	{
@@ -66,5 +66,5 @@ private $pdo;
     		die ($e->getMessage());
     	}
     }	 
-    }
+}
 ?>

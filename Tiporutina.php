@@ -70,7 +70,7 @@ if(isset($_POST['operacion']))
 							<td class="table_td">	
 								<form action="Tiporutina.php" method="post" onsubmit="return confirm ('Esta seguro?');">
 									<input type="hidden" name="operacion" value="Eliminar"/>
-									<input type="hidden" name="Id_tiporutina" value="<?php echo $r->get_Id_tiporutina();?>"/>
+									<input type="hidden" name="Id_Tiporutina" value="<?php echo $r->get_Id_Tiporutina();?>"/>
 									<input class="eliminar" type="submit" value="Eliminar"/>
 								</form>		
 							</td>
