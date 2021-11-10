@@ -56,11 +56,11 @@ public function ListarxCargo($Id_Cargo)
             {
                 $Usuario = New Usuario(); // se crea una isntancia de Cargo 
 
-                $Usuario->set_Nombre($r->Nombre);
-                $Usuario->set_Apellido($r->Apellido);
-                $Usuario->set_Usuario($r->Usuario);
-                $Usuario->set_Clave($r->Clave);
-                $Usuario->set_Id_Usuario($r->Id_Usuario);
+                $Usuario->set_Nombre($r->nombre);
+                $Usuario->set_Apellido($r->apellido);
+                $Usuario->set_Usuario($r->usuario);
+                $Usuario->set_Clave($r->clave);
+                $Usuario->set_Id_Usuario($r->id_usuario);
    
 
                 $result[] = $Usuario; //guarda cada instancia de cargo en el arreglo result
@@ -86,9 +86,9 @@ public function ListarxCargo($Id_Cargo)
                 $r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el objeto de l
                 //cargar variables de session, donde se cargan las variables de sesion 
                 session_start();
-                $_SESSION['Id_Usuario']=$r->Id_Usuario;
-                $_SESSION['Usuario']=$r->Usuario;
-                $_SESSION['Clave']=$r->Clave;
+                $_SESSION['Id_Usuario']=$r->id_usuario;
+                $_SESSION['Usuario']=$r->usuario;
+                $_SESSION['Clave']=$r->clave;
                 return true;
             } else{
                 return false;

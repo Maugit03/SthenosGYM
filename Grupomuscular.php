@@ -1,9 +1,9 @@
 <?php
-require_once "Tiporutina.entidad.php";
-require_once "Tiporutina.model.php";
+require_once "Grupomuscular.entidad.php";
+require_once "Grupomuscular.model.php";
 
-$Tiporutina = new Tiporutina();
-$model = new TiporutinaModel();
+$Grupomuscular = new Grupomuscular();
+$model = new GrupomuscularModel();
 
 if(isset($_POST['operacion']))
 {
@@ -12,12 +12,12 @@ if(isset($_POST['operacion']))
 		
 		case 'Registrar':
 		
-			$Tiporutina->set_Tiporutina($_POST ['Tiporutina']);
-			$model->Registrar($Tiporutina);
+			$Grupomuscular->set_Grupo_Muscular($_POST ['Grupo_Muscular']);
+			$model->Registrar($Grupomuscular);
 			break;
 
 		case 'Eliminar':
-			$model->Eliminar($_POST['Id_Tiporutina']);
+			$model->Eliminar($_POST['Id_Grupo_Muscular']);
 			break;
 
 				
@@ -28,22 +28,22 @@ if(isset($_POST['operacion']))
 <DOCTYPE html>
 <html lang="es">
 	<head>
-		<title>Tipos de rutina</title>
+		<title>Grupos musculares</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	</head>
 		<body>
 <div class="contenedor">			
-<h2>Tipos de rutinas</h2>
+<h2>Grupos musculares</h2>
 
 
-<form action="Tiporutina.php" method="post">
+<form action="Grupomuscular.php" method="post">
 <input type="hidden" name="operacion" value="Registrar"/>
 <table>
 	<tr>
 	</tr>
 	<tr>
-	<td>Tipo de rutina:<input class="contenedor_input" required  type="text" placeholder="Ingrese el tipo de rutina" name="Tiporutina" /></td>
+	<td>Grupos musculares:<input class="contenedor_input" required  type="text" placeholder="Ingrese el grupo" name="Grupo_Muscular" /></td>
 	</tr>
 	<!--boton Guardar-->
 	<tr>
@@ -58,18 +58,18 @@ if(isset($_POST['operacion']))
 				<table class="tabla">
 					<thead>
 						<tr class="table_tr">
-							<th class="table_th">Tipos rutinas</th>
+							<th class="table_th">Grupo Musculares</th>
 							<th></th>
 						</tr>
 					</thead>
 
 						<?php foreach($model->Listar() as $r): ?>
 						<tr class="table_tr">
-								<td class="table_td"><?php echo $r->get_Tiporutina(); ?></td>
+								<td class="table_td"><?php echo $r->get_Grupo_Muscular(); ?></td>
 							<td class="table_td">	
-								<form action="Tiporutina.php" method="post" onsubmit="return confirm ('Esta seguro?');">
+								<form action="Grupomuscular.php" method="post" onsubmit="return confirm ('Esta seguro?');">
 									<input type="hidden" name="operacion" value="Eliminar"/>
-									<input type="hidden" name="Id_Tiporutina" value="<?php echo $r->get_Id_Tiporutina();?>"/>
+									<input type="hidden" name="Id_Grupo_Muscular" value="<?php echo $r->get_Id_Grupo_Muscular();?>"/>
 									<input class="eliminar" type="submit" value="Eliminar"/>
 								</form>		
 							</td>

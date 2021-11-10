@@ -72,9 +72,6 @@ if(isset($_POST['operacion']))
 <table>
 <form action="Usuario.php" method="post"
 class="pure-form pure-form-stacked">
-
-
-
 	<tr>
 		<!--<th>Cargo</th>-->
 		<td>Cargo:<select class="contenedor_input" required name="Id_Cargo" onchange="this.form.submit();">
@@ -85,7 +82,7 @@ class="pure-form pure-form-stacked">
 			if(isset($_POST['Id_Cargo']))
 			{
 				if($r->get_Id_Cargo()==$idcargo){?>
-					<option selected=selected value="<?php echo $r->get_Id_Cargo(); ?>"> <?php echo $r->get_Cargo(); ?> </option><?php
+					<option selected="selected" value="<?php echo $r->get_Id_Cargo(); ?>"> <?php echo $r->get_Cargo(); ?> </option><?php
 				}else{?>
 					<option value="<?php echo $r->get_Id_Cargo(); ?>"> <?php echo $r->get_Cargo(); ?> </option><?php
 				}
@@ -127,7 +124,7 @@ class="pure-form pure-form-stacked">
 			{?>
 
 	<td>
-		<input type="hidden" name="Id_Cargo" value="<?php echo $Id_Cargo ?>"/>
+		<input type="hidden" name="Id_Cargo" value="<?php echo $idcargo ?>"/>
 		<input class="boton"type="submit" value="Guardar"/></td>
 <?php } ?>
 </tr>
@@ -152,7 +149,7 @@ class="pure-form pure-form-stacked">
 					<?php 
 						if(isset($_POST['Id_Cargo']))
 							{ ?>
-					<?php foreach($modelusuario->ListarxCargo($Id_Cargo) as $r): ?>
+					<?php foreach($modelusuario->ListarxCargo($idcargo) as $r): ?>
 						<tr class="table_tr">
 								<td class="table_td"><?php echo $r->get_Nombre();?></td>
 								<td class="table_td"><?php echo $r->get_Apellido(); ?></td>

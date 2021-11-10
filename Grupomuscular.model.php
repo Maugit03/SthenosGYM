@@ -1,7 +1,7 @@
 <?php
 require_once("conexion.php");
 
-class TiporutinaModel
+class GrupomuscularModel
 {
 
 private $pdo;
@@ -18,18 +18,18 @@ private $pdo;
         {
             $result = array();
 
-            $stm = $this->pdo->prepare("SELECT * FROM tiporutinas");
+            $stm = $this->pdo->prepare("SELECT * FROM grupomuscular");
 
             $stm->execute();
 
             foreach($stm->fetchAll (PDO::FETCH_OBJ) as $r)
 
             {
-    			$Tiporutina = New Tiporutina(); 
+    			$Grupomuscular = New Grupomuscular(); 
 
-    			$Tiporutina->set_Id_Tiporutina($r->Id_Tiporutina);
-    			$Tiporutina->set_Tiporutina($r->Tiporutina);
-    			$result[] = $Tiporutina; 
+    			$Grupomuscular->set_Id_Grupo_Muscular($r->Id_Grupo_Muscular);
+    			$Grupomuscular->set_Grupo_Muscular($r->Grupo_Muscular);
+    			$result[] = $Grupomuscular; 
     		}  
     		return $result; 
     	}
@@ -38,27 +38,27 @@ private $pdo;
     		die($e->getMessage());
     	}
     }
-    public function Eliminar($Id_Tiporutina)
+    public function Eliminar($Id_Grupo_Muscular)
     {
     	try
     	{
-    		$stm = $this->pdo->prepare("DELETE FROM tiporutinas Where Id_Tiporutina = ?") ; //crea la consulta 
-    		$stm->execute(array($Id_Tiporutina)); //ejecuta la consulta 
+    		$stm = $this->pdo->prepare("DELETE FROM grupomuscular Where Id_Grupo_Muscular = ?") ; //crea la consulta 
+    		$stm->execute(array($Id_Grupo_Muscular)); //ejecuta la consulta 
     	}catch (Exception $e)
     	{
     		die($e->getMessage());
     	}
     }
-    public function Registrar (Tiporutina $data)
+    public function Registrar (Grupomuscular $data)
     {
     	try
     	{
-    		$sql = "INSERT INTO tiporutinas (Tiporutina) VALUES (?)"; 
+    		$sql = "INSERT INTO grupomuscular (Grupo_Muscular) VALUES (?)"; 
       
     		$this->pdo->prepare($sql)
     			->execute(
     				array(
-                        $data->get_Tiporutina(),
+                        $data->get_Grupo_Muscular(),
     				)
     			); 
     	}catch (Exception $e)

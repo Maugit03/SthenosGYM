@@ -24,13 +24,13 @@ private $pdo;
     		{
     			$Cliente = New Cliente(); // se crea una isntancia de Cargo 
 
-    			$Cliente->set_Nombre($r->Nombre);
-    			$Cliente->set_Dni($r->Dni);
-    			$Cliente->set_Telefono($r->Telefono);
-				$Cliente->set_Direccion($r->Direccion);
-				$Cliente->set_Correo($r->Correo);
-    			$Cliente->set_Clave($r->Clave);
-    			$Cliente->set_Id_Cliente($r->Id_Cliente);
+    			$Cliente->set_Nombre($r->nombre);
+    			$Cliente->set_Dni($r->dni);
+    			$Cliente->set_Telefono($r->telefono);
+				$Cliente->set_Direccion($r->direccion);
+				$Cliente->set_Correo($r->correo);
+    			$Cliente->set_Clave($r->clave);
+    			$Cliente->set_Id_Cliente($r->id_cliente);
 
     			$result[] = $Cliente; //guarda cada instancia de cargo en el arreglo result
     		}  
@@ -42,29 +42,31 @@ private $pdo;
     	}
     }
 
-  public function Acceder(Cliente $data) //
-   {
-        try
-        {
-            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE Cliente=? and Clave=?"); //prepara la consulta 
-            $stm->execute(array($data->get_Cliente(),$data->get_Cliente())); //ejecuta la consulta y pasa por parametro el Id
-            if($stm->rowCount()>0){
-                $r = $stm->fetch(PDO::FETCH_OBJ); //Guarda en r el objeto de l
-                //cargar variables de session, donde se cargan las variables de sesion 
-                session_start();
-                $_SESSION['Id_Cliente']=$r->Id_Cliente;
-                $_SESSION['Cliente']=$r->Cliente;
-                $_SESSION['Clave']=$r->Clave;
-                return true;
-            } else{
-                return false;
+    public function Loguearse(Cliente $data){ //
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE correo = ? AND clave = ?"); //prepara la consulta 
+            $stm->execute(array(
+				$data->get_Correo(),
+				$data->get_Clave()
+			));
+            $cantreg= $stm->rowcount();
+			if($cantreg ==0){
+				return false;
+			} else {
+                $r = $stm->fetch(PDO::FETCH_OBJ);
+                $_SESSION['Id_Cliente']=$r->id_cliente;
+				$_SESSION['Nombre']=$r->nombre;
+			    $_SESSION['Dni']=$r->dni;
+				$_SESSION['Telefono']=$r->telefono;
+				$_SESSION['Direccion']=$r->direccion;
+                $_SESSION['Correo']=$r->correo;
+                $_SESSION['Clave']=$r->clave;
+				header("refresh:0;url=Rutina.php");
             }
-        }
-        catch (Exception $e)
-        {
+        } catch (Exception $e){
             die($e->getMessage());
-        }                                                                                                                                                                                                                                                              
-    }                                  
+        }    
+	}                                                                                                                                                                                                                                                           	                               
     //-------------------------Fin Metodo Acceder--------------------------------------------------------------- 
      public function Obtener($Id_Cliente) //Busca un objeto Usuario segun Id_Usuario
     {
@@ -133,6 +135,28 @@ private $pdo;
     		die($e->getMessage());
     	}
     }	
+	public function Acceder(Cliente $data)
+    {
+        try {
+
+            $stm=$this->pdo->prepare("select Nombre, Id_Cliente from cliente where Correo=? and Clave=?");
+            $stm->execute(array($data->get_Correo(), $data->get_Clave()));
+            $cantreg=$stm->rowcount();
+            if($cantreg==0){
+                return false;
+            }
+            else{
+                $r= $stm->fetch(PDO::FETCH_OBJ);
+                session_start();
+                $_SESSION['Nombre']=$r->Nombre;
+                $_SESSION['Id_Cliente']=$r->Id_Cliente;
+				return true;
+            }
+        }
+        catch (Exception $e){
+            $die ($e->getMessage());
+        }
+    }
 
 public function Registrar (Cliente $data)
     {
