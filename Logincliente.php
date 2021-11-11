@@ -6,15 +6,14 @@ $Cliente = new Cliente();
 $modelcliente = new ClienteModel();
 if (isset($_POST['Correo'])) {
 	$Cliente->set_Correo($_POST['Correo']);
-	$Cliente->set_Clave($_POST['Clave']);
-	$modelcliente->Loguearse($Cliente);
+	$Cliente->set_Clave(md5($_POST['Clave']));
 	
 	$Ingresar=$modelcliente->acceder($Cliente);
     
     
     if($Ingresar==true){
         echo 'Inicio de sesion correcto';
-        header ("refresh:3; url=Rutina.php");
+        header ("refresh:3; url=panelcontrol_cliente.php");
 }
     else{
         echo 'Datos de inicio incorrectos';
@@ -35,7 +34,7 @@ if (isset($_POST['Correo'])) {
 
 
 <form action="Logincliente.php" method="post">
-<input type="hidden" name="Id_Cliente" value="Loguearse"/>
+<input type="hidden" name="Id_Cliente" value="Acceder"/>
 <table>
 	<tr>
 	</tr>

@@ -51,22 +51,19 @@ public function ListarxCliente($Id_Cliente)
         {
             $result = array();
 
-            $stm = $this->pdo->prepare("SELECT C.Id_Cliente AS cliente, G.Grupo_Muscular AS grupomuscular, T.Tiporutina AS tiporutinas, E.Nombre_Ejercicio AS ejercicios, R.Series, R.Repeticiones, R.Descanso, R.Peso FROM rutina AS R INNER JOIN grupomuscular AS G ON G.Id_Grupo_Muscular = R.Id_grupo_muscular INNER JOIN tiporutinas AS T ON T.Id_Tiporutina = R.Id_Tiporutina INNER JOIN ejercicios AS E ON E.Id_Ejercicio = R.Id_Ejercicio INNER JOIN cliente AS C ON C.Id_Cliente = R.Id_Cliente WHERE Id_Cliente=?");
+            $stm = $this->pdo->prepare("SELECT C.Id_Cliente AS cliente, G.Grupo_Muscular AS grupomuscular, T.Tiporutina AS tiporutinas, E.Nombre_Ejercicio AS ejercicios, R.Series, R.Repeticiones, R.Descanso, R.Peso FROM rutina AS R INNER JOIN grupomuscular AS G ON G.Id_Grupo_Muscular = R.Id_grupo_muscular INNER JOIN tiporutinas AS T ON T.Id_Tiporutina = R.Id_Tiporutina INNER JOIN ejercicios AS E ON E.Id_Ejercicio = R.Id_Ejercicio INNER JOIN cliente AS C ON C.Id_Cliente = R.Id_Cliente WHERE C.Id_Cliente=?");
             $stm->execute(array($Id_Cliente)); 
                         foreach($stm->fetchAll (PDO::FETCH_OBJ) as $r) 
 
             {
                 $Rutina = New Rutina(); 
-
-
-    			$Rutina->set_Grupo_Muscular($r->Grupo_muscular);
-    			$Rutina->set_Tiporutina($r->Tiporutina);
-    			$Rutina->set_Ejercicio($r->Ejercicios);
+    			$Rutina->set_Id_Grupo_Muscular($r->grupomuscular);
+    			$Rutina->set_Id_Tiporutina($r->tiporutinas);
+    			$Rutina->set_Id_Ejercicio($r->ejercicios);
 				$Rutina->set_Series($r->Series);
 				$Rutina->set_Repeticiones($r->Repeticiones);
 				$Rutina->set_Descanso($r->Descanso);
 				$Rutina->set_Peso($r->Peso);
-				$Rutina->set_Id_Rutina($r->Id_rutina);
 				
 
                 $result[] = $Rutina; 

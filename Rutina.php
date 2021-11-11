@@ -79,11 +79,7 @@ if(isset($_POST['operacion']))
 		case 'Eliminar':
 			$modelrutina->Eliminar($_POST['Id_Rutina']);
 			break;
-
-		case 'Editar':
-			$Rutina = $modelrutina->Obtener($_POST['Id_Rutina']);
-			break;
-	}
+		}
 }
 ?>
 
@@ -242,9 +238,9 @@ class="pure-form pure-form-stacked">
 							{ ?>
 					<?php foreach($modelrutina->ListarxCliente($idcliente) as $r): ?>
 						<tr class="table_tr">
-								<td class="table_td"><?php echo $r->get_Grupo_Muscular();?></td>
-								<td class="table_td"><?php echo $r->get_Tiporutina();?></td>
-								<td class="table_td"><?php echo $r->get_Ejercicio();?></td>
+								<td class="table_td"><?php echo $r->get_Id_Grupo_Muscular();?></td>
+								<td class="table_td"><?php echo $r->get_Id_Tiporutina();?></td>
+								<td class="table_td"><?php echo $r->get_Id_Ejercicio();?></td>
 								<td class="table_td"><?php echo $r->get_Series();?></td>
 								<td class="table_td"><?php echo $r->get_Repeticiones();?></td>
 								<td class="table_td"><?php echo $r->get_Descanso();?></td>
@@ -253,19 +249,12 @@ class="pure-form pure-form-stacked">
 
 
 						<td>	
-						<form action="Rutina.php" method="post">
-							<input type="hidden" name="operacion" value="Editar"/>
-							<input type="hidden" name="Id_Rutina" value="<?php echo $r->get_Id_Rutina();?>"/>
-							<input type="hidden" name="Id_Cliente" value="<?php echo $Id_Cliente ?>"/>
-							<input class="editar" type="submit" value="Editar"/>
-						</form>		
-							</td>
+						</td>
 
 						<td>	
 						<form action="Rutina.php" method="post" onsubmit="return confirm ('Esta seguro?');">
 							<input type="hidden" name="operacion" value="Eliminar"/>
 							<input type="hidden" name="Id_Rutina" value="<?php echo $r->get_Id_Rutina();?>"/>
-							<input type="hidden" name="Id_Cliente" value="<?php echo $Id_Cliente ?>"/>
 							<input class="eliminar" type="submit" value="Eliminar"/>
 						</form>		
 						</td>

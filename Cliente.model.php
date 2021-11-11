@@ -25,11 +25,10 @@ private $pdo;
     			$Cliente = New Cliente(); // se crea una isntancia de Cargo 
 
     			$Cliente->set_Nombre($r->nombre);
-    			$Cliente->set_Dni($r->dni);
+                $Cliente->set_Dni($r->dni);
     			$Cliente->set_Telefono($r->telefono);
 				$Cliente->set_Direccion($r->direccion);
 				$Cliente->set_Correo($r->correo);
-    			$Cliente->set_Clave($r->clave);
     			$Cliente->set_Id_Cliente($r->id_cliente);
 
     			$result[] = $Cliente; //guarda cada instancia de cargo en el arreglo result
@@ -40,33 +39,37 @@ private $pdo;
     	{
     		die($e->getMessage());
     	}
-    }
+    }                
+	public function ListarxCliente($Id_Cliente)
+    {
+        try 
+        {
+            $result = array();
 
-    public function Loguearse(Cliente $data){ //
-        try {
-            $stm = $this->pdo->prepare("SELECT * FROM cliente WHERE correo = ? AND clave = ?"); //prepara la consulta 
-            $stm->execute(array(
-				$data->get_Correo(),
-				$data->get_Clave()
-			));
-            $cantreg= $stm->rowcount();
-			if($cantreg ==0){
-				return false;
-			} else {
-                $r = $stm->fetch(PDO::FETCH_OBJ);
-                $_SESSION['Id_Cliente']=$r->id_cliente;
-				$_SESSION['Nombre']=$r->nombre;
-			    $_SESSION['Dni']=$r->dni;
-				$_SESSION['Telefono']=$r->telefono;
-				$_SESSION['Direccion']=$r->direccion;
-                $_SESSION['Correo']=$r->correo;
-                $_SESSION['Clave']=$r->clave;
-				header("refresh:0;url=Rutina.php");
-            }
-        } catch (Exception $e){
+            $stm = $this->pdo->prepare("SELECT * FROM cliente where Id_Cliente=?"); //directiva de traer toda la tabla cargo
+            $stm->execute(array($Id_Cliente)); //ejecuta la consulta
+                        foreach($stm->fetchAll (PDO::FETCH_OBJ) as $r) //recorre una lista de objetos cargo que lo guarda
+            {
+                $Cliente = New Cliente(); // se crea una isntancia de Cargo 
+
+                $Cliente->set_Nombre($r->nombre);
+                $Cliente->set_Dni($r->dni);
+    			$Cliente->set_Telefono($r->telefono);
+				$Cliente->set_Direccion($r->direccion);
+				$Cliente->set_Correo($r->correo);
+    			$Cliente->set_Clave($r->clave);
+                $Cliente->set_Id_Cliente($r->id_cliente);
+   
+
+                $result[] = $Cliente; //guarda cada instancia de cargo en el arreglo result
+            }  
+            return $result; //devuelve un arreglo de objeto cargo
+        }
+        catch (Exception $e)
+        {
             die($e->getMessage());
-        }    
-	}                                                                                                                                                                                                                                                           	                               
+        }
+    }                                                                                                                                                                                                                   	                               
     //-------------------------Fin Metodo Acceder--------------------------------------------------------------- 
      public function Obtener($Id_Cliente) //Busca un objeto Usuario segun Id_Usuario
     {
@@ -148,8 +151,13 @@ private $pdo;
             else{
                 $r= $stm->fetch(PDO::FETCH_OBJ);
                 session_start();
+				$_SESSION['Id_Cliente']=$r->Id_Cliente;
                 $_SESSION['Nombre']=$r->Nombre;
-                $_SESSION['Id_Cliente']=$r->Id_Cliente;
+				$_SESSION['Dni']=$r->Dni;
+				$_SESSION['Telefono']=$r->Telefono;
+				$_SESSION['Direccion']=$r->Direccion;
+				$_SESSION['Correo']=$r->Correo;
+				$_SESSION['Clave']=$r->Clave;
 				return true;
             }
         }
