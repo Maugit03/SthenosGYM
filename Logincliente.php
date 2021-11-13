@@ -21,7 +21,7 @@ if (isset($_POST['Correo'])) {
 }
 
 ?>
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 	<head>
 		<title>Login</title>
@@ -29,6 +29,7 @@ if (isset($_POST['Correo'])) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	</head>
 		<body>
+		<center>
 <div class="contenedor">			
 <h2>Iniciar sesion</h2>
 
@@ -50,5 +51,7 @@ if (isset($_POST['Correo'])) {
 </table>	
 </form>	
 </div>
+<span><a class="btn btn-primary" href="Loginusuario.php">Si eres administrador inicia aquí</a></span>
+</center>
 </body>	 
 </html>		   		

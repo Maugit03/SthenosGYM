@@ -25,13 +25,14 @@ if(isset($_POST['operacion']))
 }
 ?>
 
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 	<head>
 		<title>Clientes</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 		<body>
+		<center>
 		<div class="contenedor">	
 <h2>Registrar Cliente</h2>
 
@@ -71,5 +72,6 @@ if(isset($_POST['operacion']))
 		<input class="boton"type="submit" value="Registrar"/></td>
     </tr>
 </form>
+</center>
 <?php ?>
 </tr>

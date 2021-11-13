@@ -1,14 +1,14 @@
 <?php
 ?>
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 	<head>
 		<title>Panel de clientes</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 	</html>
-<h2>Panel de control</h2>
-
+<h2>¡Bienvenido!</h2>
+<center>
 <div id="main-container">
 				<table class="tabla" border="1">
 					<thead>
@@ -24,3 +24,4 @@
 <iframe name= "Contenedor" height="700" width="700" frameborder="1">
 
 </iframe>
+</center>

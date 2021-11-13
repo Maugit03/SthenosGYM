@@ -90,6 +90,7 @@ if(isset($_POST['operacion']))
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 		<body>
+			<center>
 		<div class="contenedor">	
 <h2>Administracion de Rutinas</h2>
 			
@@ -257,6 +258,7 @@ class="pure-form pure-form-stacked">
 							<input type="hidden" name="Id_Rutina" value="<?php echo $r->get_Id_Rutina();?>"/>
 							<input class="eliminar" type="submit" value="Eliminar"/>
 						</form>		
+					</center>
 						</td>
 						</tr>
 					

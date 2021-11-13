@@ -6,14 +6,14 @@ $Usuario = new Usuario();
 $modelusuario = new UsuarioModel();
 if (isset($_POST['Usuario'])) {
 	$Usuario->set_Usuario($_POST['Usuario']);
-	$Usuario->set_Clave($_POST['Clave']);
+	$Usuario->set_Clave(md5($_POST['Clave']));
 	
 	$Ingresar=$modelusuario->acceder($Usuario);
     
     
     if($Ingresar==true){
         echo 'Inicio de sesion correcto';
-        header ("refresh:3; url=Rutina.php");
+        header ("refresh:3; url=Panelcontrol_usuario.php");
 }
     else{
         echo 'Datos de inicio incorrectos';
@@ -21,7 +21,7 @@ if (isset($_POST['Usuario'])) {
 }
 
 ?>
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 	<head>
 		<title>Login</title>
@@ -29,6 +29,7 @@ if (isset($_POST['Usuario'])) {
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	</head>
 		<body>
+		<center>
 <div class="contenedor">			
 <h2>Iniciar sesion</h2>
 
@@ -50,5 +51,7 @@ if (isset($_POST['Usuario'])) {
 </table>	
 </form>	
 </div>
+<span><a class="btn btn-primary" href="Logincliente.php">Volver al login de cliente</a></span>
+</center>
 </body>	 
 </html>

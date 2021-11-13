@@ -33,6 +33,7 @@ if(isset($_POST['operacion']))
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	</head>
 		<body>
+		<center>
 <div class="contenedor">			
 <h2>Tipos de rutinas</h2>
 
@@ -72,6 +73,7 @@ if(isset($_POST['operacion']))
 									<input type="hidden" name="Id_Tiporutina" value="<?php echo $r->get_Id_Tiporutina();?>"/>
 									<input class="eliminar" type="submit" value="Eliminar"/>
 								</form>		
+						</center>
 							</td>
 						</tr>
 						<?php endforeach; ?>

@@ -10,13 +10,14 @@ $modelrutina = new RutinaModel();
 
 
 ?>
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 	<head>
 		<title>Ver rutina</title>
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 		<body>
+		<center>
 <form action="Ver_rutina.php" method="post"
 class="pure-form pure-form-stacked">
 <div id="main-container">
@@ -47,6 +48,7 @@ class="pure-form pure-form-stacked">
 						</tr>
 					
 						<?php endforeach; 
+						?>
 				</table>
-
+				</center>
 		   	</div>

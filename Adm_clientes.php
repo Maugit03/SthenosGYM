@@ -13,6 +13,7 @@ $modelcliente = new ClienteModel();
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 		<body>
+		<center>
 <form action="Adm_clientes.php" method="post"
 class="pure-form pure-form-stacked">
 <div id="main-container">
@@ -44,7 +45,8 @@ class="pure-form pure-form-stacked">
 							<input type="hidden" name="operacion" value="Eliminar"/>
 							<input type="hidden" name="Id_Cliente" value="<?php echo $r->get_Id_Cliente();?>"/>
 							<input class="eliminar" type="submit" value="Eliminar"/>
-						</form>		
+						</form>	
+						<center>	
 						</td>
 						</tr>
 		<?php endforeach; 

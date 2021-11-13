@@ -63,6 +63,7 @@ if(isset($_POST['operacion']))
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 		<body>
+		<center>
 		<div class="contenedor">	
 <h2>Administracion de Usuarios</h2>
 			
@@ -174,6 +175,7 @@ class="pure-form pure-form-stacked">
 							<input type="hidden" name="Id_Cargo" value="<?php echo $Id_Cargo ?>"/>
 							<input class="eliminar" type="submit" value="Eliminar"/>
 						</form>		
+					</center>
 						</td>
 						</tr>
 					

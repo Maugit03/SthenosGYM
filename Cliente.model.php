@@ -153,11 +153,6 @@ private $pdo;
                 session_start();
 				$_SESSION['Id_Cliente']=$r->Id_Cliente;
                 $_SESSION['Nombre']=$r->Nombre;
-				$_SESSION['Dni']=$r->Dni;
-				$_SESSION['Telefono']=$r->Telefono;
-				$_SESSION['Direccion']=$r->Direccion;
-				$_SESSION['Correo']=$r->Correo;
-				$_SESSION['Clave']=$r->Clave;
 				return true;
             }
         }

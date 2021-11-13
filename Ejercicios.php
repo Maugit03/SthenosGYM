@@ -54,6 +54,7 @@ if(isset($_POST['operacion']))
 		<link rel="stylesheet" type="text/css" href="css/estilo.css">
 	</head>
 		<body>
+			<center>
 		<div class="contenedor">	
 <h2>Administracion de Ejercicios</h2>
 			
@@ -137,14 +138,7 @@ class="pure-form pure-form-stacked">
 
 
 						<td>	
-						<form action="Ejercicios.php" method="post">
-							<input type="hidden" name="operacion" value="Editar"/>
-							<input type="hidden" name="Id_Ejercicio" value="<?php echo $r->get_Id_Ejercicio();?>"/>
-							<input type="hidden" name="Id_Tiporutina" value="<?php echo $Id_Tiporutina ?>"/>
-							<input class="editar" type="submit" value="Editar"/>
-						</form>		
-							</td>
-
+					    </td>
 						<td>	
 						<form action="Ejercicios.php" method="post" onsubmit="return confirm ('Esta seguro?');">
 							<input type="hidden" name="operacion" value="Eliminar"/>
@@ -152,6 +146,7 @@ class="pure-form pure-form-stacked">
 							<input type="hidden" name="Id_Tiporutina" value="<?php echo $Id_Tiporutina ?>"/>
 							<input class="eliminar" type="submit" value="Eliminar"/>
 						</form>		
+					</center>
 						</td>
 						</tr>
 					
